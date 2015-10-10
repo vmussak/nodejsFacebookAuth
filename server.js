@@ -4,7 +4,6 @@ var express = require('express'),
   	bodyParser = require('body-parser'),
   	session = require('express-session'),
   	credentials = require('./configuration/credentials'),
-    load = require('express-load'),
     engine = require('ejs-locals'),
   	app = express();
 
@@ -19,8 +18,6 @@ app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('views','./views');
 app.use(express.static('public'));
-
-//load('.app/models').then('.app/controllers').then('.app/routes').into(app);
 
 app.listen(app.get('port'), function() {
     console.log('Aplicação rodando!');
