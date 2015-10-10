@@ -1,38 +1,9 @@
-<ul id="jMenu">
-  <% if (!user) { %>
-    <li>
-      <a> Login </a>
-      <ul>
-        <li>
-          <a>E-mail</a>
-          <a href="/auth/facebook" >Facebook</a>
-        </li>
-      </ul>
-   </li>
-  <% } else { %>
-    <li>
-      <a> <%= user.displayName %> </a>
-      <ul>
-        <li>
-          <a href="/logout" >Sair</a>
-          <a href="/account">Perfil</a>
-        </li>
-      </ul>
-   </li>
-  <% } %>
+<ul class="nav navbar-nav">
+	<li class="active"><a href="/">Home</a></li>
+	<% if (!user) { %>
+	  <li><a href="/auth/facebook">Logar com Facebook</a></li>
+	<% } else { %>
+	  <li> <a href="/account">Perfil</a> </li>
+	  <li> <a href="/logout">Sair</a> </li> 
+	<% } %>
 </ul>
-
-<script>
-  $(document).ready(function(){
-      $("#jMenu").jMenu();
-   
-      $("#jMenu").jMenu({
-        ulWidth : 'auto',
-        effects : {
-          effectSpeedOpen : 300,
-          effectTypeClose : 'slide'
-        },
-        animatedText : false
-      });
-    });
-</script>
