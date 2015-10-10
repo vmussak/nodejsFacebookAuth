@@ -1,0 +1,8 @@
+<% layout('layout') -%>
+
+<% if (!user) { %>
+  <div>
+	<h2>Bem vindo! Faça o Login!</h2>
+<% } else { %>
+	<h2>Olá, <%= user.displayName %>.</h2>
+<% } %>

@@ -1,0 +1,23 @@
+{
+  "name": "facebookAuth",
+  "version": "0.0.0",
+  "homepage": "https://github.com/vmussak/nodejsFacebookAuth",
+  "authors": [
+    "Vinicius Mussak <vinicius.mussak@outlook.com>"
+  ],
+  "description": "Autenticacao com facebook e nodejs",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "j-menu": "*"
+  }
+}

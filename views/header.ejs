@@ -1,0 +1,38 @@
+<ul id="jMenu">
+  <% if (!user) { %>
+    <li>
+      <a> Login </a>
+      <ul>
+        <li>
+          <a>E-mail</a>
+          <a href="/auth/facebook" >Facebook</a>
+        </li>
+      </ul>
+   </li>
+  <% } else { %>
+    <li>
+      <a> <%= user.displayName %> </a>
+      <ul>
+        <li>
+          <a href="/logout" >Sair</a>
+          <a href="/account">Perfil</a>
+        </li>
+      </ul>
+   </li>
+  <% } %>
+</ul>
+
+<script>
+  $(document).ready(function(){
+      $("#jMenu").jMenu();
+   
+      $("#jMenu").jMenu({
+        ulWidth : 'auto',
+        effects : {
+          effectSpeedOpen : 300,
+          effectTypeClose : 'slide'
+        },
+        animatedText : false
+      });
+    });
+</script>

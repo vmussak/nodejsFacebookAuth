@@ -4,14 +4,25 @@ var express = require('express'),
   	bodyParser = require('body-parser'),
   	session = require('express-session'),
   	credentials = require('./configuration/credentials'),
+    load = require('express-load'),
+    engine = require('ejs-locals'),
   	app = express();
 
+
+app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'keyboard cat', key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.listen(3000, function() {
+app.engine('ejs', engine);
+app.set('view engine', 'ejs');
+app.set('views','./views');
+app.use(express.static('public'));
+
+//load('.app/models').then('.app/controllers').then('.app/routes').into(app);
+
+app.listen(app.get('port'), function() {
     console.log('Aplicação rodando!');
 });
 
@@ -39,12 +50,12 @@ passport.use(new FacebookStrategy({
 
 /*Rotas*/
 app.get('/', function(req, res){
-  res.send('API de autenticação com Redes sociais');
+  res.render('index', { user: req.user });
 });
 
 app.get('/account', usuarioAutenticado, function(req, res){
-	console.log(req);
-	res.json(req.user);
+  console.log(req.user);
+	res.render('perfil', {user: req.user});
 });
 
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
@@ -61,7 +72,7 @@ app.get('/logout', function(req, res){
 });
 
 app.get('/login', function(req, res){
-	res.send('Faça autenticacao para prosseguir!');
+	res.redirect('/');
 })
 
 function usuarioAutenticado(req, res, next) {

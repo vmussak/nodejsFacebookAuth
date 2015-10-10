@@ -1,0 +1,10 @@
+<% layout('layout') -%>
+
+<p>Id: <%= user.id %></p>
+<p>Nome: <%= user.displayName %></p>
+<p>Sexo: <%= user.gender == 'male' ? 'Masculino' : 'Feminino' %></p>
+<ul>E-mails:
+	<% for(var i=0; i<user.emails.length; i++) {%>
+	   <li><%= user.emails[i].value %></li>
+	<% } %>
+</ul>
