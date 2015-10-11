@@ -7,3 +7,8 @@
 	  <li> <a href="/logout">Sair</a> </li> 
 	<% } %>
 </ul>
+<% if (user) { %>
+	<ul class="nav navbar-nav navbar-right">
+	  <li><img src="<%= user.photos[0].value %>"></li>
+	</ul>
+<% } %>

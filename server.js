@@ -35,7 +35,8 @@ passport.deserializeUser(function(user, done) {
 passport.use(new FacebookStrategy({
     clientID: credentials.facebook_api_key,
     clientSecret:credentials.facebook_api_secret ,
-    callbackURL: credentials.callback_url
+    callbackURL: credentials.callback_url,
+    profileFields: ['id', 'displayName', 'photos', 'emails', 'gender']
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function () {
@@ -51,7 +52,8 @@ app.get('/', function(req, res){
 });
 
 app.get('/account', usuarioAutenticado, function(req, res){
-  console.log(req.user);
+  console.log(req.user.photos[0].value);
+
 	res.render('perfil', {user: req.user});
 });
 
@@ -74,6 +76,6 @@ app.get('/login', function(req, res){
 
 function usuarioAutenticado(req, res, next) {
   if (req.isAuthenticated())
-  	return next(); 
+    return next(); 
   res.redirect('/login')
 }
